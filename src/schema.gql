@@ -1,0 +1,40 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Cat {
+  age: Int!
+  breed: String
+  id: String!
+  name: String!
+}
+
+input CreateCatDto {
+  age: Int!
+  breed: String
+  name: String!
+}
+
+input CreateUserDTO {
+  age: Float!
+  email: String!
+}
+
+type Mutation {
+  createCat(input: CreateCatDto!): Cat!
+  createUser(createUserData: CreateUserDTO!): User!
+  deleteCat(id: String!): [Cat!]!
+}
+
+type Query {
+  getCat(id: String!): Cat!
+  getCats: [Cat!]!
+  user(userId: String!): User
+}
+
+type User {
+  age: Int!
+  email: String!
+  isSubscribed: Boolean
+  userId: String!
+}
