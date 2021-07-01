@@ -13,6 +13,7 @@ import { CatsModule } from './cats/cats.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       playground: true,
+      installSubscriptionHandlers: true,
     }),
     CatsModule,
   ],

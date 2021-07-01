@@ -6,6 +6,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { Cat } from './models/cat';
 
 import { CATS } from 'src/mocks/cats.mock';
+import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()
 export class CatsService {
@@ -19,7 +20,7 @@ export class CatsService {
     return this.cats;
   }
 
-  public findOneById(id: string): Cat {
+  public get(id: string): Cat {
     return this.cats.find((cat) => cat.id === id);
   }
 
@@ -32,13 +33,32 @@ export class CatsService {
     return newCat;
   }
 
-  public delete(id: string): Cat[] {
-    const taskIndex = this.cats.findIndex((item) => item.id === id);
-    if (taskIndex === -1) {
+  public async update(id: string, dto: UpdateCatDto): Promise<Cat> {
+    const index = this.cats.findIndex((item) => item.id === id);
+    if (index === -1) {
       throw new HttpException('Cat not found', 404);
     }
 
-    this.cats.splice(taskIndex, 1);
+    const cat: Cat = this.cats.find((cat) => cat.id === id);
+    if (dto.name) {
+      cat.name = dto.name;
+    }
+    if (dto.age) {
+      cat.age = dto.age;
+    }
+    if (dto.breed) {
+      cat.breed = dto.breed;
+    }
+    return this.cats.find((cat) => cat.id === id);
+  }
+
+  public delete(id: string): Cat[] {
+    const index = this.cats.findIndex((item) => item.id === id);
+    if (index === -1) {
+      throw new HttpException('Cat not found', 404);
+    }
+
+    this.cats.splice(index, 1);
     return this.cats;
   }
 }

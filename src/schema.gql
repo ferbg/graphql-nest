@@ -24,12 +24,19 @@ type Mutation {
   createCat(input: CreateCatDto!): Cat!
   createUser(createUserData: CreateUserDTO!): User!
   deleteCat(id: String!): [Cat!]!
+  updateCat(id: String!, input: UpdateCatDto!): Cat!
 }
 
 type Query {
   getCat(id: String!): Cat!
   getCats: [Cat!]!
   user(userId: String!): User
+}
+
+input UpdateCatDto {
+  age: Float
+  breed: String
+  name: String
 }
 
 type User {
