@@ -33,6 +33,10 @@ type Query {
   user(userId: String!): User
 }
 
+type Subscription {
+  catAdded: Cat!
+}
+
 input UpdateCatDto {
   age: Float
   breed: String

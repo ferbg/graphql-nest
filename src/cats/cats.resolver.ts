@@ -1,4 +1,5 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { PubSub } from 'apollo-server-express';
+import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -7,6 +8,7 @@ import { Cat } from './models/cat';
 
 @Resolver(() => Cat)
 export class CatsResolver {
+  private pubSub = new PubSub();
   constructor(private catsService: CatsService) {}
 
   @Query(() => [Cat])
@@ -21,7 +23,9 @@ export class CatsResolver {
 
   @Mutation(() => Cat)
   async createCat(@Args('input') input: CreateCatDto) {
-    return this.catsService.create(input);
+    const newCat = await this.catsService.create(input);
+    this.pubSub.publish('catAdded', { catAdded: newCat });
+    return newCat;
   }
 
   @Mutation(() => Cat)
@@ -32,5 +36,10 @@ export class CatsResolver {
   @Mutation(() => [Cat])
   async deleteCat(@Args('id') id: string) {
     return this.catsService.delete(id);
+  }
+
+  @Subscription(() => Cat)
+  catAdded() {
+    return this.pubSub.asyncIterator('catAdded');
   }
 }
