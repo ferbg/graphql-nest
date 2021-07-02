@@ -1,7 +1,7 @@
-import { CreateCatDto.Ts } from './create-cat.dto.ts';
+import { CreateCatDto } from './create-cat.dto';
 
-describe('CreateCatDto.Ts', () => {
+describe('CreateCatDto', () => {
   it('should be defined', () => {
-    expect(new CreateCatDto.Ts()).toBeDefined();
+    expect(new CreateCatDto()).toBeDefined();
   });
 });
