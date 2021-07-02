@@ -5,7 +5,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 
 import { Cat } from './models/cat';
 
-import { CATS } from 'src/mocks/cats.mock';
+import { CATS } from './../mocks/cats.mock';
 import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()

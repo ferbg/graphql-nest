@@ -1,7 +1,7 @@
-import { CreateUserInput } from './create-user.dto';
+import { CreateUserDTO } from './create-user.dto';
 
-describe('CreateUserInput', () => {
+describe('CreateUserDTO', () => {
   it('should be defined', () => {
-    expect(new CreateUserInput()).toBeDefined();
+    expect(new CreateUserDTO()).toBeDefined();
   });
 });
