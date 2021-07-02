@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { UsersModule } from './users/users.module';
 import { CatsModule } from './cats/cats.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CatsModule } from './cats/cats.module';
       installSubscriptionHandlers: true,
     }),
     CatsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [],

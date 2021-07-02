@@ -15,6 +15,11 @@ input CreateCatDto {
   name: String!
 }
 
+input CreateTaskDto {
+  description: String!
+  title: String!
+}
+
 input CreateUserDTO {
   age: Float!
   email: String!
@@ -22,25 +27,44 @@ input CreateUserDTO {
 
 type Mutation {
   createCat(input: CreateCatDto!): Cat!
+  createTask(input: CreateTaskDto!): Task!
   createUser(createUserData: CreateUserDTO!): User!
   deleteCat(id: String!): [Cat!]!
+  deleteTask(id: String!): [Task!]!
   updateCat(id: String!, input: UpdateCatDto!): Cat!
+  updateTask(id: String!, input: UpdateTaskDto!): Task!
 }
 
 type Query {
   getCat(id: String!): Cat!
   getCats: [Cat!]!
+  getTask(id: String!): Task!
+  getTasks: [Task!]!
   user(userId: String!): User
 }
 
 type Subscription {
   catAdded: Cat!
+  taskAdded: Task!
+}
+
+type Task {
+  completed: Boolean!
+  description: String!
+  id: ID!
+  title: String!
 }
 
 input UpdateCatDto {
   age: Float
   breed: String
   name: String
+}
+
+input UpdateTaskDto {
+  completed: Boolean
+  description: String
+  title: String
 }
 
 type User {
