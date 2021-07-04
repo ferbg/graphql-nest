@@ -21,7 +21,11 @@ export class CatsService {
   }
 
   public get(id: string): Cat {
-    return this.cats.find((cat) => cat.id === id);
+    const cat: Cat = this.cats.find((cat) => cat.id === id);
+    if (cat === undefined) {
+      throw new HttpException('Cat not found', 404);
+    }
+    return cat;
   }
 
   public async create(dto: CreateCatDto): Promise<Cat> {

@@ -6,7 +6,7 @@ export class Cat {
   id: string;
   @Field()
   name: string;
-  @Field((type) => Int)
+  @Field(() => Int)
   age: number;
   @Field({ nullable: true })
   breed?: string;

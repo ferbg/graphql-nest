@@ -3,11 +3,11 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class UpdateTaskDto {
   @Field({ nullable: true })
-  title: string;
+  title?: string;
 
   @Field({ nullable: true })
-  description: string;
+  description?: string;
 
   @Field({ nullable: true })
-  completed: boolean;
+  completed?: boolean;
 }

@@ -3,10 +3,10 @@ import { Field, InputType } from '@nestjs/graphql';
 @InputType()
 export class UpdateCatDto {
   @Field({ nullable: true })
-  name: string;
+  name?: string;
 
   @Field({ nullable: true })
-  age: number;
+  age?: number;
 
   @Field({ nullable: true })
   breed?: string;

@@ -9,5 +9,5 @@ export class Task {
   @Field()
   description: string;
   @Field({ defaultValue: false })
-  completed?: boolean;
+  completed?: boolean = false;
 }

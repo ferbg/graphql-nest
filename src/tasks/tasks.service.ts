@@ -22,14 +22,16 @@ export class TasksService {
   }
 
   public get(id: string): Task {
-    return this.tasks.find((task) => task.id === id);
+    const task: Task = this.tasks.find((task) => task.id === id);
+    if (task === undefined) {
+      throw new HttpException('Task not found', 404);
+    }
+    return task;
   }
 
   public async create(dto: CreateTaskDto): Promise<Task> {
-    const newTask: Task = {
-      id: uuidv4(),
-      ...dto,
-    };
+    //  Instance Tack for use default values
+    const newTask: Task = { ...new Task(), ...{ id: uuidv4() }, ...dto };
     this.tasks.push(newTask);
     return newTask;
   }

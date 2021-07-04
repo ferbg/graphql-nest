@@ -7,7 +7,7 @@ export class CreateCatDto {
   @IsNotEmpty()
   name: string;
 
-  @Field((type) => Int)
+  @Field(() => Int)
   @IsNotEmpty()
   age: number;
 
